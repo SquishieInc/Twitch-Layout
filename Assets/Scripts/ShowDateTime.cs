@@ -1,10 +1,10 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using System;
 
 public class ShowDateTime : MonoBehaviour
 {
-    public Text dateTimeText; // Reference to the Text component
+    public TextMeshProUGUI dateTimeText; // Reference to the Text component
 
     // Boolean flags to toggle date components
     public bool showDate = true;
@@ -30,12 +30,12 @@ public class ShowDateTime : MonoBehaviour
 
             if (showDay)
             {
-                formattedDate += currentDateTime.ToString("dd") + "/";
+                formattedDate += currentDateTime.ToString("dd") + " ";
             }
 
             if (showMonth)
             {
-                formattedDate += currentDateTime.ToString("MMMM") + "/";
+                formattedDate += currentDateTime.ToString("MMM") + " ";
             }
 
             if (showYear)
@@ -44,7 +44,7 @@ public class ShowDateTime : MonoBehaviour
             }
 
             // Remove trailing slash if present
-            formattedDate = formattedDate.TrimEnd('/');
+            formattedDate = formattedDate.TrimEnd(' ');
 
             formattedDateTime += formattedDate;
         }
