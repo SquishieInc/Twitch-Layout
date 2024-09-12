@@ -21,7 +21,6 @@ public class TwitchAPI : MonoBehaviour
     private TwitchChatClient chatClient;
 
     public OAuthManager oAuthManager;
-    private string accessToken = "";
 
     private async void Start()
     {
@@ -36,11 +35,7 @@ public class TwitchAPI : MonoBehaviour
         {
             Debug.LogError("Access Token is missing!");
         }
-    }
 
-    private async void Start()
-    {
-        await UpdateTwitchData();
         StartChatClient();
     }
 

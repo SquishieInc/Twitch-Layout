@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using System.Collections;
 
 public class OAuthManager : MonoBehaviour
@@ -7,7 +7,7 @@ public class OAuthManager : MonoBehaviour
     public string clientId = "your_client_id";
     public string redirectUri = "http://localhost";
     public string[] scopes = { "user:read:email", "chat:read", "channel:read:subscriptions" }; // Add more scopes if needed
-    public Text accessTokenText;
+    public TextMeshProUGUI accessTokenText;
 
     private string accessToken = "";
 
@@ -54,3 +54,4 @@ public class OAuthManager : MonoBehaviour
         return accessToken;
     }
 }
+    
