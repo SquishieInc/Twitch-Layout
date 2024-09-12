@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 using Newtonsoft.Json.Linq;
 using System.Threading;
 using System.Net.Sockets;
@@ -9,16 +9,34 @@ using System.IO;
 
 public class TwitchAPI : MonoBehaviour
 {
-    public Text followerCountText;
-    public Text viewerCountText;
-    public Text subscriberCountText;
-    public Text chatText;
+    public TextMeshProUGUI followerCountText;
+    public TextMeshProUGUI viewerCountText;
+    public TextMeshProUGUI subscriberCountText;
+    public TextMeshProUGUI chatText;
 
     private string accessToken = "your_access_token";
     private string clientId = "your_client_id";
     private string channelId = "your_channel_id"; // You can retrieve this via the Twitch API
     private string username = "your_twitch_username";
     private TwitchChatClient chatClient;
+
+    public OAuthManager oAuthManager;
+    private string accessToken = "";
+
+    private async void Start()
+    {
+        // Get access token from OAuthManager
+        accessToken = oAuthManager.GetAccessToken();
+
+        if (!string.IsNullOrEmpty(accessToken))
+        {
+            await UpdateTwitchData();
+        }
+        else
+        {
+            Debug.LogError("Access Token is missing!");
+        }
+    }
 
     private async void Start()
     {
